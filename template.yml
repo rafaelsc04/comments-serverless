@@ -1,0 +1,22 @@
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  APIGW:
+    Type: AWS::Serverless::Api
+    Properties:
+      Cors: "'*'"
+      StageName: develop
+
+  CommentsController:
+    Type: AWS::Serverless::Function
+    Properties:
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /comments
+            Method: ANY
+            RestApiId: !Ref APIGW
+      FunctionName: CommentsController
+      Handler: src/main.handler
+      Runtime: python3.12
+      Timeout: 10
