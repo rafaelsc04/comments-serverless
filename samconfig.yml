@@ -1,0 +1,5 @@
+version: 0.1
+default:
+  local_start_api:
+    parameters:
+      docker_network: comments-serverless_default
